@@ -22,7 +22,6 @@ void *process_gen_h(void *hari_par){
         //p.p_prio=15;
         p.p_time=rand() % 15;
         
-        p.exec=0;
         
         //printf("time=%d eta prio=%d\n ",p.p_time,p.p_prio);
         //printf("PID:%d",p.pid);

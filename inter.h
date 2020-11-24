@@ -36,12 +36,52 @@ struct hari_par{
 
 };
 
+
+/*
+typedef struct prozesu{
+  
+  int pid;
+  memMan mm;
+
+}prozesu;
+
+typedef struct memMan{
+  
+  int data;
+  int code;
+  int pgb;
+}memMan;
+
+//malloc-ekin hasieratu
+int **PMem;
+
+//int **VMem;
+
+
+//int PTBR[128][2];
+
+typedef struct CPU{
+  
+  int core;
+  int hari;
+  int PTBR;
+  int PC;
+  int IR;
+
+}CPU;
+
+
+
+
+*/
+
+
+
 typedef struct prozesu{
   
   int pid;
   int p_prio;
   int p_time;
-  int exec;
 
 }prozesu;
 

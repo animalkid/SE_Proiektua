@@ -7,6 +7,7 @@ void *process_exec0(void* core){
   while(1){
     int past=0;
     //int QT=100;
+    
     //printf("Hasiera\n");
     sem_wait(&prozBil[coren]);
     prozesu* p=findLowPrioLastAndRemove(coren);

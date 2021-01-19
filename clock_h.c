@@ -1,15 +1,6 @@
 #include "inter.h"
 
 int tic=0;
-//tic=0;
-
-
-void clock_print(){
-  printf("%ds\n",tic);
-}
-
-
-
 
 
 void *clock_h(void *hari_par){
@@ -19,7 +10,6 @@ void *clock_h(void *hari_par){
     sleep(1);
     tic++;
     sem_post(&sem_timer);
-    //clock_print();
 
   }
 

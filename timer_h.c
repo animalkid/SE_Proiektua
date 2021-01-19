@@ -10,7 +10,6 @@ void *timer_h(void *hari_par){
     sem_wait(&sem_timer);
     maizt=tic%5;
     maizt2=tic%12;
-    //printf("Maizt=%d\n",maizt);
     if(maizt==0.0){
       sem_post(&sem_sched);
       //sem_post(&sem_proc_gen);

@@ -1,5 +1,11 @@
 #include "inter.h"
 
+unsigned char *PMem;
+
+int proghas;
+
+int orrihas;
+
 
 void sortu_hariak(int hari_kop, int core_kop){
   int i, err;
@@ -14,7 +20,7 @@ void sortu_hariak(int hari_kop, int core_kop){
       h_p[i].hari_id = i;
   pthread_create(&hariak_id[0], NULL, clock_h, (void*)&h_p[0]);;
   pthread_create(&hariak_id[1], NULL, timer_h, (void*)&h_p[1]);;
-  pthread_create(&hariak_id[2], NULL, process_gen_h, (void*)&h_p[2]);;
+  pthread_create(&hariak_id[2], NULL, process_load_h, (void*)&h_p[2]);;
   pthread_create(&hariak_id[3], NULL, sched_h, (void*)&h_p[3]);; 
   pthread_create(&hariak_id[4], NULL, process_balance, NULL);;
   int y=0;
@@ -48,6 +54,10 @@ int main(int argc, char *argv[]){
   sem_init(&sem_proc_gen, 1, 0); 
   sem_init(&sem_bal, 1, 0);  
 
+  sem_init(&sem_ezab, 1, 0);
+  sem_post(&sem_ezab);
+
+
   corenum=atoi(argv[1]);
   QT=atoi(argv[2]);
   int i;
@@ -67,6 +77,19 @@ int main(int argc, char *argv[]){
     for(j=0;0<140;j++)
       prozesu_ll[i][j]=malloc(sizeof(node));
   */
+
+//hasieratu coreen hari kontroladorea
+  subpro=malloc(corenum*sizeof(int));
+  for(i=0;i<corenum;i++)
+    subpro[i]=0;
+  orrihas=0x0;
+  proghas=1024*4;
+//hasieratu memoria fisikoa  
+  PMem=malloc(4*1024*1024);
+
+  freeframes=(nodeFree*) malloc(sizeof(nodeFree));
+  freeframes->has=proghas; 
+  freeframes->buk=1024*1024*4-1;
   
   sortu_hariak(5,corenum);
   /*
@@ -78,6 +101,12 @@ int main(int argc, char *argv[]){
   }
   free(prozesu_ll);
   */
+
+
+
+
+
+
 }
 
 

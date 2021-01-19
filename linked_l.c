@@ -8,6 +8,11 @@ node * head = NULL;
 
 //node ***prozesu_ll;
 
+
+nodeFree *freeframes;
+
+
+
 node *prozesu_ll[128][140];
 
 
@@ -29,7 +34,7 @@ void print_list(node * head) {
     node * current = head;
     //printf("Lista:");
     while (current != NULL) {
-        printf("%d (%d)s ; ", current->val.p_prio, current->val.p_time);
+        printf("%d ", current->val.p_prio);
         current = current->next;
     }
     

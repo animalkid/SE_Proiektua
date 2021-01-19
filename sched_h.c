@@ -12,7 +12,7 @@ void *sched_h(void *hari_par){
     //printf("JASOTA%d!\n",proba);
     //printf("Arraya:");
     
-    printf("         [1:%d:%d | 2:%d:%d | 3:%d:%d | 4:%d:%d | 5:%d:%d | 6:%d:%d | 7:%d:%d | 8:%d:%d]\n\n",p_array[0].p_prio,p_array[0].p_time,p_array[1].p_prio,p_array[1].p_time,p_array[2].p_prio,p_array[2].p_time,p_array[3].p_prio,p_array[3].p_time,p_array[4].p_prio,p_array[4].p_time,p_array[5].p_prio,p_array[5].p_time, p_array[6].p_prio,p_array[6].p_time, p_array[7].p_prio,p_array[7].p_time);
+    printf("         [1:%d | 2:%d | 3:%d | 4:%d | 5:%d | 6:%d | 7:%d | 8:%d]\n\n",p_array[0].p_prio,p_array[1].p_prio,p_array[2].p_prio,p_array[3].p_prio,p_array[4].p_prio,p_array[5].p_prio, p_array[6].p_prio, p_array[7].p_prio);
     int k;
     int y;
     for (y=0;y<corenum;y++){
@@ -28,6 +28,17 @@ void *sched_h(void *hari_par){
       printf("                            -----------------------------\n\n");
     }
     printf("\n");
+    
+    int i; 
+
+/*
+    for(i=orrihas;i<orrihas+200;i+=4)
+      printf("0x%08X 0x%08X\n",i,*((int*)&PMem[i]));
+
+    for(i=proghas;i<proghas+200;i+=4)
+      printf("0x%08X 0x%08X\n",i,*((int*)&PMem[i]));
+*/  
+    
     if (array_k>0){
       int i=0;
       int j;

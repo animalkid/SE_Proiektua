@@ -9,6 +9,16 @@
 #include <time.h>
 #include <unistd.h>
 #include <limits.h>
+#include <string.h>
+
+
+
+#define HELBIDE 4 //helbide baten tamaina
+#define FRAMETAM 16 //frame baten tamaina
+#define ORRIBLOK 4 //orri bloke batean sartzen diren orri koputua
+#define FRAMEHELB 4 //frame batean sartzen diren helbide kopurua  
+
+
 
 
 sem_t sem_timer;
@@ -21,6 +31,7 @@ sem_t sem_bal;
 
 //sem_t *prozBil;
 
+sem_t sem_ezab;
 
 sem_t prozBil[128];
 
@@ -37,51 +48,73 @@ struct hari_par{
 };
 
 
-/*
-typedef struct prozesu{
-  
-  int pid;
-  memMan mm;
+extern int orrihas;
+extern int proghas; //
 
-}prozesu;
+
+//FRAME TIPOA SORTU
+
+//extern char frame[8][4];
+
+
+typedef struct nodeOrri {
+  int val;
+  struct nodeOrri * next;
+} nodeOrri;
+
+
+typedef struct nodeFree {
+  int has;
+  int buk;
+  struct nodeFree * next;
+} nodeFree;
+
+extern nodeFree *freeframes;
 
 typedef struct memMan{
   
-  int data;
-  int code;
-  int pgb;
+  int PC; 
+  unsigned int data;
+  unsigned int code;
+  nodeOrri *pgb;
+
 }memMan;
 
 //malloc-ekin hasieratu
-int **PMem;
+extern unsigned char *PMem;
 
 //int **VMem;
 
 
-//int PTBR[128][2];
 
 typedef struct CPU{
   
   int core;
   int hari;
-  int PTBR;
+  nodeOrri *PTBR;
   int PC;
   int IR;
+  int reg[15];
 
 }CPU;
 
 
 
 
-*/
 
 
+extern int *subpro;
 
 typedef struct prozesu{
-  
+
+  //int bukhelb;  
+  int framekop;
   int pid;
   int p_prio;
-  int p_time;
+  //int p_time;
+  int reg[15];
+  memMan mm;
+
 
 }prozesu;
 
@@ -94,6 +127,12 @@ typedef struct node {
 } node;
 
 extern node *head;
+
+
+
+
+
+
 
 void insert_head(prozesu val, int core);
 
@@ -132,6 +171,8 @@ void *timer_h(void *hari_par);
 
 void *process_gen_h(void *hari_par);
 
+void *process_load_h(void *hari_par);
+
 void *sched_h(void *hari_par);
 
 void process_disp_h(prozesu p);
@@ -142,5 +183,8 @@ void *process_exec0(void *core);
 
 void *process_balance(void *a);
 
+CPU erag(int op, int instruk, CPU cpu);
+
+void memEzab(prozesu *p);
 
 #endif
